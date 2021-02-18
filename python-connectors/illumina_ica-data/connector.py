@@ -104,35 +104,7 @@ class MyConnector(Connector):
         The dataset schema and partitioning are given for information purpose.
         """
         if self.method == 'bgp':
-            #files = self.bgp.get_project_files()
-            files = [
-                {
-                  'id': '2409402',
-                 'originalName': 'Homo_sapiens.GRCh37.dna.chromosome.21.fa.fai',
-                 'relativeAccessPoint': 'thenameofthisrunis1/steps/extract/try-1/Homo_sapiens.GRCh37.dna.chromosome.21.fa.fai',
-                 'reference': '1e7fdff3-571c-42ce-99c4-cf9f2a9fd370',
-                 'size': 21,
-                 'status': 'AVAILABLE',
-                 'tags': {'technicalTags': [],
-                  'userTags': ['volumeName:wfr.b469264f651a4430b14097ea8974cedb'],
-                  'connectorTags': [],
-                  'runInTags': [],
-                  'runOutTags': ['thenameofthisrunis1'],
-                  'referenceTags': []},
-                 'format': {'id': '806', 'code': 'FAI', 'description': 'FASTA index file.'},
-                 'dataType': 'FILE',
-                 'children': [],
-                 'dateCreated': '2021-02-12T18:26:28.389+0000',
-                 'dataCenter': {'id': '2232',
-                  'code': 'IAP-US',
-                  'country': 'United States',
-                  'city': 'Virginia',
-                  'region': 'US Region'},
-                 'replicationStatus': 'REPLICATED',
-                 'dateToArchive': None,
-                 'dateToDelete': None
-                }
-            ]
+            files = self.bgp.get_project_files()
             for file in files:
                 yield {
                     "ID": int(file.data['id']),
@@ -142,7 +114,15 @@ class MyConnector(Connector):
                     "Date": file.data['dateCreated'],
                     "Path": file.data['relativeAccessPoint']
                 }
-
+        else:
+            yield {
+                    "ID": 1,
+                    "Name": "aap",
+                    "Format": "noot",
+                    "Size": 1,
+                    "Date": '2021-02-12T18:26:28.389+0000',
+                    "Path": "/aap/noot/mies"
+                }
 
     def get_writer(self, dataset_schema=None, dataset_partitioning=None,
                          partition_id=None):
