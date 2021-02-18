@@ -27,14 +27,6 @@
     For the full list and for more details, see the documentation: https://doc.dataiku.com/dss/latest/plugins/reference/params.html
     */
     "params": [
-        {
-            "name": "name",
-            "label": "Dataset name",
-            "type": "STRING",
-            "description": "Name for the dataset",
-            "mandatory": true
-        },
-
         /* A "SELECT" parameter is a multi-choice selector. Choices are specified using the selectChoice field*/
         {
             "name": "method",
