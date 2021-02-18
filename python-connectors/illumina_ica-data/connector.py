@@ -76,11 +76,11 @@ class MyConnector(Connector):
             self.token = self.config.get("token")
             self.domain = self.config.get("domain")
             
-            conf.api_key['Authorization'] = conf.get_basic_auth_token()
+            self.conf.api_key['Authorization'] = self.conf.get_basic_auth_token()
             
             token = tokens_api.create_token(domain=self.domain)
-            conf.api_key['Authorization'] = token.access_token
-            conf.api_key_prefix['Authorization'] = token.token_type
+            self.conf.api_key['Authorization'] = token.access_token
+            self.conf.api_key_prefix['Authorization'] = token.token_type
             
             
     def get_read_schema(self):
