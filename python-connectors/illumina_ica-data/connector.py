@@ -24,6 +24,42 @@ class MyConnector(Connector):
         object 'plugin_config' to the constructor
         """
         Connector.__init__(self, config, plugin_config)  # pass the parameters to the base class
+        
+        ####
+        # Set Local Variables needed for bluebee.py - Bit of a HACK
+        #
+        # These are examples of the local variables we have access to in ICA
+        self.vars = {
+            "BGP_NODEINSTANCE": "300281",
+            "BGP_BLUEBASE": "204164",
+            "BGP_SNOWFLAKE_DATABASE": "tool_development_4003",
+            "BGP_NOTEBOOK": "300281",
+            "BGP_NAMESPACE": "tst-aws-ilmn-integration-w300281",
+            "BGP_API_KEY": "935ec01e-87fd-47c0-a636-be1696c2136f",
+            "BGP_URL": "https://ilmnplatform.bluebee.com/ica/rest/api",
+            "BGP_WORKSPACE": "300281",
+            "BGP_BLUEBASE_PASSWORD": "ec6f9e23-f4be-4bf3-b05c-a4dfd1b7c978",
+            "BGP_PROJECT": "204155",
+            "BGP_SNOWFLAKE_ACCOUNT": "iapdev.us-east-1",
+            "BGP_SNOWFLAKE_WAREHOUSE": "TOOL_DEVELOPMENT_4003_QUERY",
+            "BGP_TYPE": "component",
+            "BGP_BLUEBASE_USERNAME": "bb_204164_c",
+            "server": "https://use1.platform.illumina.com",
+            "domain": "emergingsolutions"
+        }
+        
+#         #Get all the variables and set them as environment variables, since bluebee.py API needs them
+#         project_handle = dataiku.api_client().get_project(dataiku.default_project_key())
+#         self.vars = project_handle.get_variables()['local']
+#         #vars['local']['server-url']
+        
+        for k,v in self.vars.items():
+            os.environ[k] = v
+        
+#         #Now import the library
+#         import bluebee
+#         from bluebee import bgp
+
 
         # perform some more initialization
         self.theparam1 = self.config.get("parameter1", "defaultValue")
