@@ -3,7 +3,9 @@
 # import the base class for the custom dataset
 from six.moves import xrange
 from dataiku.connector import Connector
-import os
+import os, datetime
+from illumina.ica_client.rest import ApiException
+import illumina.ica_client as ica
 
 """
 A custom Python dataset is a subclass of Connector.
@@ -57,9 +59,30 @@ class MyConnector(Connector):
         from illumina.bluebee import bgp
         self.bgp = bgp
 
-        # perform some more initialization
-        self.method = self.config.get("method", "ica")
-
+        self.method = self.config.get("method")
+        
+        #Setup authentication in case we are using ICA
+        if self.method == 'ica':
+            self.conf = ica.Configuration()
+            self.conf.debug = False
+            ica_client = ica.ApiClient(self.conf)
+            tokens_api = ica.TokensApi(ica_client)
+            
+            # perform some more initialization
+            self.conf.server = self.config.get("server")
+            self.useToken = self.config.get("useToken")
+            self.conf.username = self.config.get("username")
+            self.conf.password = self.config.get("password")
+            self.token = self.config.get("token")
+            self.domain = self.config.get("domain")
+            
+            conf.api_key['Authorization'] = conf.get_basic_auth_token()
+            
+            token = tokens_api.create_token(domain=self.domain)
+            conf.api_key['Authorization'] = token.access_token
+            conf.api_key_prefix['Authorization'] = token.token_type
+            
+            
     def get_read_schema(self):
         """
         Returns the schema that this connector generates when returning rows.
