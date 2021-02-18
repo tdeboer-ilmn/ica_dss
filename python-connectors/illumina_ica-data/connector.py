@@ -4,6 +4,7 @@
 from six.moves import xrange
 from dataiku.connector import Connector
 from illumina.bluebee import bgp
+
 """
 A custom Python dataset is a subclass of Connector.
 
