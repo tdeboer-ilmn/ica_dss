@@ -66,12 +66,6 @@
             "visibilityCondition" : "model.method == 'ica'"
         },
         {
-            "name": "domain",
-            "label": "User's domain (Optional)",
-            "type": "STRING",
-            "visibilityCondition" : "model.method == 'ica'"
-        },
-        {
             "name": "useToken",
             "label" : "Authenticate with token",
             "type": "BOOLEAN",
@@ -94,6 +88,12 @@
             "label" : "Token",
             "type": "STRING",
             "visibilityCondition" : "model.useToken && model.method == 'ica'"
-          }
+          },
+        {
+            "name": "domain",
+            "label": "User's domain (Optional)",
+            "type": "STRING",
+            "visibilityCondition" : "model.method == 'ica'"
+        }
     ]
 }
