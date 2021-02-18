@@ -29,7 +29,7 @@
     "params": [
         {
             "name": "sep1",
-            "label": "Authentication",
+            "label": "Retrieval method",
             "type": "SEPARATOR"
         },
         {
@@ -50,6 +50,11 @@
             ]
         },
         {
+            "name": "sep2",
+            "label": "Authentication",
+            "type": "SEPARATOR"
+        },
+        {
             "name": "server",
             "label": "ICA server",
             "type": "SELECT",
@@ -59,6 +64,29 @@
                 { "value": "integration", "label": "integration.stratus.illumina.com" }
             ],
             "visibilityCondition" : "model.method == 'ica'"
-        }
+        },
+        {
+            "name": "useToken",
+            "label" : "Authenticate with token",
+            "type": "BOOLEAN"
+         },
+          {
+            "name": "username",
+            "label" : "Login",
+            "type": "STRING",
+            "visibilityCondition" : "!model.useToken"
+          },
+          {
+            "name": "password",
+            "label" : "Password",
+            "type": "PASSWORD",
+            "visibilityCondition" : "!model.useToken"
+          },
+          {
+            "name": "token",
+            "label" : "Token",
+            "type": "STRING",
+            "visibilityCondition" : "model.useToken"
+          }
     ]
 }
