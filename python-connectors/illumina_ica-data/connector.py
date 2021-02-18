@@ -48,11 +48,7 @@ class MyConnector(Connector):
             "domain": "emergingsolutions"
         }
         
-#         #Get all the variables and set them as environment variables, since bluebee.py API needs them
-#         project_handle = dataiku.api_client().get_project(dataiku.default_project_key())
-#         self.vars = project_handle.get_variables()['local']
-#         #vars['local']['server-url']
-        
+        #Make all the variables environment variables, since bluebee.py API needs them as environment variables
         for k,v in self.vars.items():
             os.environ[k] = v
         
@@ -61,7 +57,7 @@ class MyConnector(Connector):
         from illumina.bluebee import bgp
 
         # perform some more initialization
-        self.method = self.config.get("method", "defaultValue")
+        self.method = self.config.get("method", "bgp")
 
     def get_read_schema(self):
         """
@@ -97,8 +93,10 @@ class MyConnector(Connector):
 
         The dataset schema and partitioning are given for information purpose.
         """
-        for i in xrange(1,10):
-            yield { "first_col" : str(i), "my_string" : "Yes" }
+        if self.method == 'bgp':
+            files = bgp.get_project_files()
+            for file in files:
+                yield file.data
 
 
     def get_writer(self, dataset_schema=None, dataset_partitioning=None,
