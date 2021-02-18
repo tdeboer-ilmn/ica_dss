@@ -60,9 +60,8 @@ class MyConnector(Connector):
         import illumina.bluebee
         from illumina.bluebee import bgp
 
-
         # perform some more initialization
-        self.theparam1 = self.config.get("parameter1", "defaultValue")
+        self.method = self.config.get("method", "defaultValue")
 
     def get_read_schema(self):
         """
