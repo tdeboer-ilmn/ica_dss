@@ -74,6 +74,7 @@
           {
             "name": "username",
             "label" : "Login",
+            "defaultValue": "tdeboer@illumina.com",
             "type": "STRING",
             "required": true,
             "visibilityCondition" : "!model.useToken && model.method == 'ica'"
@@ -92,15 +93,19 @@
             "visibilityCondition" : "model.useToken && model.method == 'ica'"
           },
         {
-            "name": "project",
-            "label": "User's project (Optional)",
-            "description": "If project is not provided, user's personal context will be used",
+            "name": "domain",
+            "label": "User's domain (Optional)",
+            "defaultValue": "emergingsolutions",
+            "required": true,
             "type": "STRING",
+            "description": "Domain or Account for the user",
             "visibilityCondition" : "model.method == 'ica'"
         },
         {
-            "name": "domain",
-            "label": "User's domain (Optional)",
+            "name": "project",
+            "label": "User's project (Optional)",
+            "defaultValue": "Thons_private_project",
+            "description": "If project is not provided, user's personal context will be used",
             "type": "STRING",
             "visibilityCondition" : "model.method == 'ica'"
         }
