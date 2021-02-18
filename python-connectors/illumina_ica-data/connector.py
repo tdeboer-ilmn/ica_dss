@@ -150,7 +150,7 @@ class MyConnector(Connector):
                     "Format": file.data['format']['code'],
                     "Size": file.data['size'],
                     "Date": file.data['dateCreated'],
-                    "Path": file.data['relativeAccessPoint']
+                    "Path": '/' + file.data['relativeAccessPoint']
                 }
         else:
             vols_api = ica.VolumesApi(self.ica_client)
