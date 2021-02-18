@@ -93,7 +93,7 @@ class MyConnector(Connector):
                 self.ica_project = find_projects_by_name(name=self.project)
                 self.conf.api_key['Authorization'] = self.conf.get_basic_auth_token()
                 self.conf.api_key_prefix.pop('Authorization')
-                token = tokens_api.create_token(domain = domain, cid = self.ica_project.id)
+                token = tokens_api.create_token(domain = self.domain, cid = self.ica_project.id)
                 self.conf.api_key['Authorization'] = token.access_token
                 self.conf.api_key_prefix['Authorization'] = token.token_type
     
