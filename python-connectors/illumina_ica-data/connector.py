@@ -60,7 +60,11 @@ class MyConnector(Connector):
         self.bgp = bgp
 
         self.method = self.config.get("method")
-        
+
+        def find_projects_by_name(name):
+            l = projects_api.list_projects().items
+            return next((item for item in l if item.name == name), False)
+
         #Setup authentication in case we are using ICA
         if self.method == 'ica':
             self.conf = ica.Configuration()
@@ -86,7 +90,7 @@ class MyConnector(Connector):
             #Set the project context, if set
             if self.project != '':
                 projects_api = ica.ProjectsApi(self.ica_client)
-                self.ica_project = find_item_by_name(method=projects_api.list_projects, name=self.project)
+                self.ica_project = find_projects_by_name(name=self.project)
                 self.conf.api_key['Authorization'] = conf.get_basic_auth_token()
                 self.conf.api_key_prefix.pop('Authorization')
                 token = tokens_api.create_token(domain = domain, cid = self.ica_project.id)
