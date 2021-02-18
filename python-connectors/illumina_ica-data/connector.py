@@ -4,8 +4,8 @@
 from six.moves import xrange
 from dataiku.connector import Connector
 import os, datetime
-from illumina.ica_client.rest import ApiException
-import illumina.ica_client as ica
+from ica_client.rest import ApiException
+import ica_client as ica
 
 """
 A custom Python dataset is a subclass of Connector.
@@ -55,8 +55,8 @@ class MyConnector(Connector):
             os.environ[k] = v
         
         #Now import the library
-        import illumina.bluebee
-        from illumina.bluebee import bgp
+        import bluebee
+        from bluebee import bgp
         self.bgp = bgp
 
         self.method = self.config.get("method")
