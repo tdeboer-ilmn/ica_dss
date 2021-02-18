@@ -127,7 +127,7 @@ class MyConnector(Connector):
         The dataset schema and partitioning are given for information purpose.
         """
         if self.method == 'bgp':
-            files = self.bgp.get_project_files()[:2]
+            files = self.bgp.get_project_files()
             for file in files:
                 yield {
                     "ID": int(file.data['id']),
