@@ -6,7 +6,7 @@ from dataiku.connector import Connector
 import os, datetime
 from ica_client.rest import ApiException
 import ica_client as ica
-
+from illumina.ica_helpers import find_item_by_name, list_all_items
 """
 A custom Python dataset is a subclass of Connector.
 
