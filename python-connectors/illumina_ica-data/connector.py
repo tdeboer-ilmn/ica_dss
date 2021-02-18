@@ -65,8 +65,8 @@ class MyConnector(Connector):
         if self.method == 'ica':
             self.conf = ica.Configuration()
             self.conf.debug = False
-            ica_client = ica.ApiClient(self.conf)
-            tokens_api = ica.TokensApi(ica_client)
+            self.ica_client = ica.ApiClient(self.conf)
+            tokens_api = ica.TokensApi(self.ica_client)
             
             # perform some more initialization
             self.conf.server = self.config.get("server")
@@ -126,6 +126,9 @@ class MyConnector(Connector):
 
         The dataset schema and partitioning are given for information purpose.
         """
+        vols_api = ica.VolumesApi(self.ica_client)
+        files_api = ica.FilesApi(self.ica_client)
+        folders_api = ica.FoldersApi(self.ica_client)
         
         def list_all_volumes():
             return list_all_items(method=vols_api.list_volumes)
