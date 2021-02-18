@@ -55,6 +55,7 @@ class MyConnector(Connector):
         #Now import the library
         import illumina.bluebee
         from illumina.bluebee import bgp
+        self.bgp = bgp
 
         # perform some more initialization
         self.method = self.config.get("method", "bgp")
@@ -94,7 +95,7 @@ class MyConnector(Connector):
         The dataset schema and partitioning are given for information purpose.
         """
         if self.method == 'bgp':
-            files = bgp.get_project_files()
+            files = self.bgp.get_project_files()
             for file in files:
                 yield file.data
 
