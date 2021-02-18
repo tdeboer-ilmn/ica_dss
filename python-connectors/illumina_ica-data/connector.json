@@ -33,7 +33,7 @@
             "label": "Retrieval method",
             "description": "Method for retrieving the dataset data",
             "type": "SELECT",
-            "defaultValue": "bgp",
+            "defaultValue": "ica",
             "selectChoices": [
                 {
                     "value": "ica",
@@ -44,6 +44,16 @@
                     "label": "Legacy bluebee API"
                 }
             ]
+        },
+        {
+            "name": "server",
+            "label": "ICA server",
+            "type": "SELECT",
+            "selectChoices": [
+                { "value": "use1", "label": "use1.platform.illumina.com" },
+                { "value": "integration", "label": "integration.stratus.illumina.com" }
+            ],
+            "visibilityCondition" : "model.method == 'ica'"
         }
     ]
 }
