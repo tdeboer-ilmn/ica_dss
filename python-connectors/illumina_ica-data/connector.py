@@ -82,7 +82,16 @@ class MyConnector(Connector):
 
         # In this example, we don't specify a schema here, so DSS will infer the schema
         # from the columns actually returned by the generate_rows method
-        return None
+        return {
+            "columns" : [
+                {"name": "ID", "type" : "bigint"},
+                {"name": "Name", "type" : "string"},
+                {"name" :"Format", "type" : "string"},
+                {"name" :"Size", "type" : "bigint"},
+                {"name" :"Date", "type" : "date"},
+                {"name": "Path", "type" : "string"}
+            ]
+        }
 
     def generate_rows(self, dataset_schema=None, dataset_partitioning=None,
                             partition_id=None, records_limit = -1):
@@ -97,7 +106,14 @@ class MyConnector(Connector):
         if self.method == 'bgp':
             files = self.bgp.get_project_files()
             for file in files:
-                yield file.data
+                yield {
+                    "ID": int(file.data['id']),
+                    "Name": file.data['originalName'],
+                    "Format": file.data['format']['code'],
+                    "Size": file.data['size'],
+                    "Date": file.data['dateCreated'],
+                    "Path": file.data['relativeAccessPoint']
+                }
 
 
     def get_writer(self, dataset_schema=None, dataset_partitioning=None,
