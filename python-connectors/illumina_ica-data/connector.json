@@ -27,7 +27,11 @@
     For the full list and for more details, see the documentation: https://doc.dataiku.com/dss/latest/plugins/reference/params.html
     */
     "params": [
-        /* A "SELECT" parameter is a multi-choice selector. Choices are specified using the selectChoice field*/
+        {
+            "name": "sep1",
+            "label": "Authentication",
+            "type": "SEPARATOR"
+        },
         {
             "name": "method",
             "label": "Retrieval method",
