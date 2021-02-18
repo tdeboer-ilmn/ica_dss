@@ -126,6 +126,16 @@ class MyConnector(Connector):
 
         The dataset schema and partitioning are given for information purpose.
         """
+        
+        def list_all_volumes():
+            return list_all_items(method=vols_api.list_volumes)
+
+        def list_all_files(volume_id):
+            return list_all_items(method=files_api.list_files, volume_id=volume_id)
+
+        def list_all_folders(volume_id, **kwargs):
+            return list_all_items(method=folders_api.list_folders, volume_id=volume_id)
+
         if self.method == 'bgp':
             files = self.bgp.get_project_files()
             for file in files:
@@ -138,14 +148,18 @@ class MyConnector(Connector):
                     "Path": file.data['relativeAccessPoint']
                 }
         else:
-            yield {
-                    "ID": 1,
-                    "Name": "aap",
-                    "Format": "noot",
-                    "Size": 1,
-                    "Date": '2021-02-12T18:26:28.389+0000',
-                    "Path": "/aap/noot/mies"
-                }
+            #Get list of all volumes and list all files in those volumes
+            vols = [volume.id for volume in list_all_volumes()]
+            files = [file for file in list_all_files(vols)]
+            for file in files:
+                yield {
+                        "ID": file.id,
+                        "Name": file.name,
+                        "Format": file.type,
+                        "Size": int(file.size_in_bytes),
+                        "Date": eval(file.time_created),
+                        "Path": file.path
+                    }
 
     def get_writer(self, dataset_schema=None, dataset_partitioning=None,
                          partition_id=None):
