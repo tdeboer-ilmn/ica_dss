@@ -74,19 +74,19 @@
             "name": "username",
             "label" : "Login",
             "type": "STRING",
-            "visibilityCondition" : "!model.useToken"
+            "visibilityCondition" : "!model.useToken && model.method == 'ica'"
           },
           {
             "name": "password",
             "label" : "Password",
             "type": "PASSWORD",
-            "visibilityCondition" : "!model.useToken"
+            "visibilityCondition" : "!model.useToken && model.method == 'ica'"
           },
           {
             "name": "token",
             "label" : "Token",
             "type": "STRING",
-            "visibilityCondition" : "model.useToken"
+            "visibilityCondition" : "model.useToken && model.method == 'ica'"
           }
     ]
 }
