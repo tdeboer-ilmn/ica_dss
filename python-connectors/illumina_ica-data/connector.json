@@ -8,7 +8,7 @@
         "description": "The complete list of files from Illumina's ICA",
 
         // icon: must be one of the FontAwesome 3.2.1 icons, complete list here at https://fontawesome.com/v3.2.1/icons/
-        "icon": "icon-hdd"
+        "icon": "icon-info-sign"
     },
 
     /* Can this connector read data ? */
