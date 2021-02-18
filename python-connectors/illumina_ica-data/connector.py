@@ -75,6 +75,7 @@ class MyConnector(Connector):
             self.conf.password = self.config.get("password")
             self.token = self.config.get("token")
             self.domain = self.config.get("domain")
+            self.project = self.config.get("project")
             
             self.conf.api_key['Authorization'] = self.conf.get_basic_auth_token()
             
@@ -82,7 +83,16 @@ class MyConnector(Connector):
             self.conf.api_key['Authorization'] = token.access_token
             self.conf.api_key_prefix['Authorization'] = token.token_type
             
-            
+            #Set the project context, if set
+            if self.project != '':
+                projects_api = ica.ProjectsApi(self.ica_client)
+                self.ica_project = find_item_by_name(method=projects_api.list_projects, name=self.project)
+                self.conf.api_key['Authorization'] = conf.get_basic_auth_token()
+                self.conf.api_key_prefix.pop('Authorization')
+                token = tokens_api.create_token(domain = domain, cid = self.ica_project.id)
+                self.conf.api_key['Authorization'] = token.access_token
+                self.conf.api_key_prefix['Authorization'] = token.token_type
+    
     def get_read_schema(self):
         """
         Returns the schema that this connector generates when returning rows.
