@@ -75,12 +75,14 @@
             "name": "username",
             "label" : "Login",
             "type": "STRING",
+            "required": true,
             "visibilityCondition" : "!model.useToken && model.method == 'ica'"
           },
           {
             "name": "password",
             "label" : "Password",
             "type": "PASSWORD",
+            "required": true,
             "visibilityCondition" : "!model.useToken && model.method == 'ica'"
           },
           {
@@ -89,6 +91,13 @@
             "type": "STRING",
             "visibilityCondition" : "model.useToken && model.method == 'ica'"
           },
+        {
+            "name": "project",
+            "label": "User's project (Optional)",
+            "description": "If project is not provided, user's personal context will be used",
+            "type": "STRING",
+            "visibilityCondition" : "model.method == 'ica'"
+        },
         {
             "name": "domain",
             "label": "User's domain (Optional)",
