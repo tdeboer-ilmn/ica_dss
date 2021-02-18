@@ -58,7 +58,7 @@ class MyConnector(Connector):
         self.bgp = bgp
 
         # perform some more initialization
-        self.method = self.config.get("method", "bgp")
+        self.method = self.config.get("method", "ica")
 
     def get_read_schema(self):
         """
@@ -104,7 +104,7 @@ class MyConnector(Connector):
         The dataset schema and partitioning are given for information purpose.
         """
         if self.method == 'bgp':
-            files = self.bgp.get_project_files()[:10]
+            files = self.bgp.get_project_files()
             for file in files:
                 yield {
                     "ID": int(file.data['id']),
