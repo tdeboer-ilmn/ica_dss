@@ -140,18 +140,6 @@ class MyConnector(Connector):
 
         The dataset schema and partitioning are given for information purpose.
         """
-        vols_api = ica.VolumesApi(self.ica_client)
-        files_api = ica.FilesApi(self.ica_client)
-        folders_api = ica.FoldersApi(self.ica_client)
-        
-        def list_all_volumes():
-            return list_all_items(method=vols_api.list_volumes)
-
-        def list_all_files(volume_id):
-            return list_all_items(method=files_api.list_files, volume_id=volume_id)
-
-        def list_all_folders(volume_id, **kwargs):
-            return list_all_items(method=folders_api.list_folders, volume_id=volume_id)
 
         if self.method == 'bgp':
             files = self.bgp.get_project_files()
@@ -165,6 +153,19 @@ class MyConnector(Connector):
                     "Path": file.data['relativeAccessPoint']
                 }
         else:
+            vols_api = ica.VolumesApi(self.ica_client)
+            files_api = ica.FilesApi(self.ica_client)
+            folders_api = ica.FoldersApi(self.ica_client)
+
+            def list_all_volumes():
+                return list_all_items(method=vols_api.list_volumes)
+
+            def list_all_files(volume_id):
+                return list_all_items(method=files_api.list_files, volume_id=volume_id)
+
+            def list_all_folders(volume_id, **kwargs):
+                return list_all_items(method=folders_api.list_folders, volume_id=volume_id)
+
             #Get list of all volumes and list all files in those volumes
             vols = [volume.id for volume in list_all_volumes()]
             files = [file for file in list_all_files(vols)]
