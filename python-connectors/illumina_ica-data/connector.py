@@ -160,7 +160,7 @@ class MyConnector(Connector):
                         "Name": file.name,
                         "Format": file.type,
                         "Size": int(file.size_in_bytes),
-                        "Date": eval(file.time_created),
+                        "Date": file.time_created,
                         "Path": file.path
                     }
 
