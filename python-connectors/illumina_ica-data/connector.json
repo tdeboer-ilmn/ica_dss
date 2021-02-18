@@ -30,9 +30,10 @@
         /* A "SELECT" parameter is a multi-choice selector. Choices are specified using the selectChoice field*/
         {
             "name": "method",
-            "label": "Retreival method",
+            "label": "Retrieval method",
             "description": "Method for retrieving the dataset data",
             "type": "SELECT",
+            "defaultValue": "bgp",
             "selectChoices": [
                 {
                     "value": "ica",
