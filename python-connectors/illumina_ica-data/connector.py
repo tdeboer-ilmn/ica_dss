@@ -32,20 +32,20 @@ class MyConnector(Connector):
         #
         # These are examples of the local variables we have access to in ICA
         self.vars = {
-            "BGP_NODEINSTANCE": "300281",
-            "BGP_BLUEBASE": "204164",
-            "BGP_SNOWFLAKE_DATABASE": "tool_development_4003",
-            "BGP_NOTEBOOK": "300281",
-            "BGP_NAMESPACE": "tst-aws-ilmn-integration-w300281",
-            "BGP_API_KEY": "935ec01e-87fd-47c0-a636-be1696c2136f",
-            "BGP_URL": "https://ilmnplatform.bluebee.com/ica/rest/api",
-            "BGP_WORKSPACE": "300281",
-            "BGP_BLUEBASE_PASSWORD": "ec6f9e23-f4be-4bf3-b05c-a4dfd1b7c978",
-            "BGP_PROJECT": "204155",
-            "BGP_SNOWFLAKE_ACCOUNT": "iapdev.us-east-1",
-            "BGP_SNOWFLAKE_WAREHOUSE": "TOOL_DEVELOPMENT_4003_QUERY",
+            "BGP_NODEINSTANCE": "2436693",
+            "BGP_BLUEBASE": "229407",
+            "BGP_SNOWFLAKE_DATABASE": "thons_private_project_229341",
+            "BGP_NOTEBOOK": "2436693",
+            "BGP_NAMESPACE": "prod-aws-ilmn-production-w2436693",
+            "BGP_API_KEY": "f599fc17-a80d-425d-95d4-d4af1e394744",
+            "BGP_URL": "https://platform.illumina.com/ica/rest/api",
+            "BGP_WORKSPACE": "2436693",
+            "BGP_BLUEBASE_PASSWORD": "a914b626-9747-4f8b-b77e-755caffc8de0",
+            "BGP_PROJECT": "229396",
+            "BGP_SNOWFLAKE_ACCOUNT": "use1sf01.us-east-1",
+            "BGP_SNOWFLAKE_WAREHOUSE": "THONS_PRIVATE_PROJECT_229341_QUERY",
             "BGP_TYPE": "component",
-            "BGP_BLUEBASE_USERNAME": "bb_204164_c",
+            "BGP_BLUEBASE_USERNAME": "bb_229407_c",
             "server": "https://use1.platform.illumina.com",
             "domain": "emergingsolutions"
         }
