@@ -49,6 +49,7 @@
             "name": "server",
             "label": "ICA server",
             "type": "SELECT",
+            "defaultValue": "use1",
             "selectChoices": [
                 { "value": "use1", "label": "use1.platform.illumina.com" },
                 { "value": "integration", "label": "integration.stratus.illumina.com" }
